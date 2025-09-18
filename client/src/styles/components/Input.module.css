@@ -1,0 +1,87 @@
+/* Input Component Styles */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  margin-bottom: var(--spacing-1);
+}
+
+.input {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-gray-900);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  appearance: none;
+}
+
+.input::placeholder {
+  color: var(--color-gray-400);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.input:disabled {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-500);
+  cursor: not-allowed;
+}
+
+/* States */
+.error {
+  border-color: var(--color-danger);
+}
+
+.error:focus {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px var(--color-danger-light);
+}
+
+.success {
+  border-color: var(--color-success);
+}
+
+.success:focus {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px var(--color-success-light);
+}
+
+/* Sizes */
+.small {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-sm);
+}
+
+.large {
+  padding: var(--spacing-4) var(--spacing-6);
+  font-size: var(--font-size-lg);
+}
+
+/* Error message */
+.errorMessage {
+  font-size: var(--font-size-sm);
+  color: var(--color-danger);
+  margin-top: var(--spacing-1);
+}
+
+/* Helper text */
+.helperText {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
+  margin-top: var(--spacing-1);
+}

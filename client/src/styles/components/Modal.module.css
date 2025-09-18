@@ -1,0 +1,136 @@
+/* Modal Component Styles */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4);
+  z-index: var(--z-modal-backdrop);
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background-color: var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  z-index: var(--z-modal);
+  transform: scale(1);
+  transition: all var(--transition-base);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-6);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.modalTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  color: var(--color-gray-400);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.closeButton:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
+.modalBody {
+  padding: var(--spacing-6);
+  overflow-y: auto;
+  max-height: calc(90vh - 140px);
+}
+
+.modalFooter {
+  display: flex;
+  gap: var(--spacing-3);
+  justify-content: flex-end;
+  padding: var(--spacing-6);
+  border-top: 1px solid var(--color-gray-200);
+  background-color: var(--color-gray-50);
+}
+
+/* Sizes */
+.small {
+  width: 400px;
+}
+
+.medium {
+  width: 600px;
+}
+
+.large {
+  width: 800px;
+}
+
+.fullscreen {
+  width: 95vw;
+  height: 95vh;
+}
+
+/* Animation classes for transitions */
+.modalEnter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.modalEnterActive {
+  opacity: 1;
+  transform: scale(1);
+  transition: all var(--transition-base);
+}
+
+.modalExit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.modalExitActive {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all var(--transition-base);
+}
+
+.overlayEnter {
+  opacity: 0;
+}
+
+.overlayEnterActive {
+  opacity: 1;
+  transition: opacity var(--transition-base);
+}
+
+.overlayExit {
+  opacity: 1;
+}
+
+.overlayExitActive {
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}

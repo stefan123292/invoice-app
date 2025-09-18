@@ -1,0 +1,109 @@
+/* Authentication Layout Styles */
+.authLayout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-gray-50) 100%);
+  padding: var(--spacing-4);
+}
+
+.authCard {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+.authHeader {
+  text-align: center;
+  padding: var(--spacing-8) var(--spacing-6) var(--spacing-6);
+}
+
+.authTitle {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-2);
+}
+
+.authSubtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: var(--line-height-relaxed);
+}
+
+.authBody {
+  padding: 0 var(--spacing-6) var(--spacing-8);
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.authFooter {
+  text-align: center;
+  padding: var(--spacing-4) var(--spacing-6);
+  background-color: var(--color-gray-50);
+  border-top: 1px solid var(--color-gray-200);
+}
+
+.authLink {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-base);
+}
+
+.authLink:hover {
+  color: var(--color-primary-hover);
+}
+
+/* Demo credentials */
+.demoCredentials {
+  background-color: var(--color-primary-light);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+}
+
+.demoTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.demoText {
+  font-size: var(--font-size-xs);
+  color: var(--color-primary);
+  font-family: var(--font-family-mono);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .authLayout {
+    padding: var(--spacing-2);
+  }
+  
+  .authCard {
+    border-radius: var(--radius-lg);
+  }
+  
+  .authHeader {
+    padding: var(--spacing-6) var(--spacing-4) var(--spacing-4);
+  }
+  
+  .authTitle {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .authBody {
+    padding: 0 var(--spacing-4) var(--spacing-6);
+  }
+}
