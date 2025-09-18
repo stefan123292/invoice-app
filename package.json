@@ -23,7 +23,7 @@
     "prisma",
     "postgresql"
   ],
-  "author": "",
+  "author": "Covanji Stepan",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.2"

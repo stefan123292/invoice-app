@@ -9,6 +9,7 @@ import { initializeAuth } from './store/authSlice';
 import Login from './pages/Login';
 import Invoices from './pages/Invoices';
 import ProtectedRoute from './components/ProtectedRoute';
+import './App.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {
