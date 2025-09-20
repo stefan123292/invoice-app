@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Invoice } from '../types/index.js';
+import styles from '../styles/components/InvoiceTable.module.css';
 
 interface InvoiceTableProps {
   invoices: Invoice[];
@@ -68,8 +69,8 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
 
   if (loading) {
     return (
-      <div className="invoice-table-card">
-        <div style={{ padding: '2rem', textAlign: 'center', color: '#64748b' }}>
+      <div className={styles.invoiceTableCard}>
+        <div className={styles.loadingState}>
           Loading invoices...
         </div>
       </div>
@@ -78,26 +79,26 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
 
   if (!invoices || invoices.length === 0) {
     return (
-      <div className="invoice-table-card">
-        <div style={{ padding: '2rem', textAlign: 'center', color: '#64748b' }}>
+      <div className={styles.invoiceTableCard}>
+        <div className={styles.emptyState}>
           <svg 
-            style={{ width: '48px', height: '48px', margin: '0 auto 1rem', display: 'block' }} 
+            className={styles.emptyIcon}
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '18px', color: '#1e293b' }}>No invoices found</h3>
-          <p style={{ margin: 0 }}>Your invoices will appear here when they're available.</p>
+          <h3 className={styles.emptyTitle}>No invoices found</h3>
+          <p className={styles.emptyDescription}>Your invoices will appear here when they're available.</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="invoice-table-card">
-      <table className="invoice-table">
+    <div className={styles.invoiceTableCard}>
+      <table className={styles.invoiceTable}>
         <thead>
           <tr>
             <th>
@@ -105,7 +106,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
                 type="checkbox"
                 checked={selectedInvoices.size === invoices.length && invoices.length > 0}
                 onChange={toggleSelectAll}
-                style={{ margin: 0 }}
+                className={styles.checkbox}
               />
             </th>
             <th>Date</th>
@@ -121,57 +122,40 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
             const status = getInvoiceStatus(invoice);
             
             return (
-              <tr key={invoice.id} onClick={() => onInvoiceClick(invoice.id)} style={{ cursor: 'pointer' }}>
-                <td onClick={(e) => e.stopPropagation()}>
+              <tr key={invoice.id} onClick={() => onInvoiceClick(invoice.id)}>
+                <td className={styles.checkboxCell} onClick={(e) => e.stopPropagation()}>
                   <input
                     type="checkbox"
                     checked={selectedInvoices.has(invoice.id)}
                     onChange={() => toggleInvoiceSelection(invoice.id)}
-                    style={{ margin: 0 }}
+                    className={styles.checkbox}
                   />
                 </td>
                 <td>{formatDate(invoice.createdAt)}</td>
                 <td>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <div style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      backgroundColor: '#a5b4fc',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: 'white',
-                      fontSize: '12px',
-                      fontWeight: '600'
-                    }}>
+                  <div className={styles.vendorCell}>
+                    <div className={styles.vendorAvatar}>
                       {invoice.vendorName.charAt(0).toUpperCase()}
                     </div>
-                    <span style={{ fontWeight: '500' }}>{invoice.vendorName}</span>
+                    <span className={styles.vendorName}>{invoice.vendorName}</span>
                   </div>
                 </td>
                 <td>
-                  <div style={{ maxWidth: '200px' }}>
-                    <div style={{ fontWeight: '500', marginBottom: '2px' }}>
+                  <div className={styles.descriptionCell}>
+                    <div className={styles.invoiceId}>
                       Invoice #{invoice.id.slice(-8)}
                     </div>
                     {invoice.description && (
-                      <div style={{ 
-                        fontSize: '12px', 
-                        color: '#64748b',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap'
-                      }}>
+                      <div className={styles.invoiceDescription}>
                         {invoice.description}
                       </div>
                     )}
                   </div>
                 </td>
                 <td>{formatDate(invoice.dueDate)}</td>
-                <td style={{ fontWeight: '600' }}>{formatCurrency(invoice.amount)}</td>
+                <td className={styles.amountCell}>{formatCurrency(invoice.amount)}</td>
                 <td>
-                  <span className={`status-badge ${status}`}>
+                  <span className={`${styles.statusBadge} ${styles[status]}`}>
                     {getStatusText(status)}
                   </span>
                 </td>

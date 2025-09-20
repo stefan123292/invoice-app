@@ -1,69 +1,88 @@
-# React + TypeScript + Vite
+# Invoice Management - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend application for invoice management system.
 
-Currently, two official plugins are available:
+## 🚀 Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Install dependencies
+npm install
 
-## Expanding the ESLint configuration
+# Start development server
+npm run dev
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Build for production
+npm run build
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Preview production build
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🏗️ Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **React 18** - UI library
+- **Vite** - Build tool & dev server
+- **TypeScript** - Type safety
+- **Redux Toolkit** - State management
+- **React Query** - Server state & caching
+- **React Router** - Client-side routing
+- **Tailwind CSS** - Styling
+- **Zod** - Form validation
+- **Axios** - HTTP client
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Project Structure
+
 ```
+client/
+├── src/
+│   ├── api/           # API client functions
+│   ├── components/    # Reusable components
+│   │   └── ui/        # Base UI components
+│   ├── hooks/         # Custom React hooks
+│   ├── pages/         # Page components
+│   ├── store/         # Redux store & slices
+│   ├── styles/        # CSS modules & styles
+│   └── types/         # TypeScript definitions
+├── public/
+└── package.json
+```
+
+## 🎨 Features
+
+- **Authentication** - Login/logout with JWT
+- **Invoice Management** - View and manage invoices
+- **Responsive Design** - Mobile-friendly interface
+- **Real-time Data** - React Query for efficient fetching
+- **Form Validation** - Client-side validation with Zod
+- **Modal Interface** - Detailed invoice views
+
+## 🔧 Development
+
+### Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start Vite dev server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+
+### Environment
+
+- **Development**: `http://localhost:5173`
+- **API Base URL**: `http://localhost:3001/api`
+
+## 🎯 Key Components
+
+- **Login** - Authentication page
+- **Invoices** - Dashboard with invoice list
+- **InvoiceTable** - Data table component
+- **InvoiceModal** - Detail view modal
+- **ProtectedRoute** - Route protection
+
+## 📱 Responsive Design
+
+- Mobile-first approach
+- Breakpoints: 480px, 768px, 1024px
+- Touch-friendly interface
+- Optimized for all screen sizes

@@ -85,6 +85,18 @@
   font-family: var(--font-family-mono);
 }
 
+.errorMessage {
+  padding: var(--spacing-4);
+  background-color: var(--color-danger-light);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-md);
+}
+
+.errorText {
+  font-size: var(--font-size-sm);
+  color: var(--color-danger);
+}
+
 /* Responsive */
 @media (max-width: 480px) {
   .authLayout {

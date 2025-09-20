@@ -1,0 +1,160 @@
+/* Invoice Table Component Styles */
+.invoiceTableCard {
+  background-color: var(--color-white);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.invoiceTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoiceTable thead th {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-weight: var(--font-weight-semibold);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: var(--font-size-sm);
+}
+
+.invoiceTable thead th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.invoiceTable thead th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.invoiceTable tbody tr {
+  border-bottom: 1px solid var(--color-gray-100);
+  cursor: pointer;
+  transition: background-color var(--transition-base);
+}
+
+.invoiceTable tbody tr:nth-child(odd) {
+  background-color: var(--color-white);
+}
+
+.invoiceTable tbody tr:nth-child(even) {
+  background-color: var(--color-gray-50);
+}
+
+.invoiceTable tbody tr:hover {
+  background-color: var(--color-gray-50);
+}
+
+.invoiceTable tbody td {
+  padding: 0.75rem 1rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+}
+
+.vendorCell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.vendorAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.vendorName {
+  font-weight: var(--font-weight-medium);
+}
+
+.descriptionCell {
+  max-width: 200px;
+}
+
+.invoiceId {
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 2px;
+}
+
+.invoiceDescription {
+  font-size: 12px;
+  color: var(--color-gray-500);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amountCell {
+  font-weight: var(--font-weight-semibold);
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.125rem 0.625rem;
+  font-size: 12px;
+  font-weight: var(--font-weight-medium);
+}
+
+.statusBadge.paid {
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.statusBadge.open {
+  color: var(--color-warning);
+  background-color: var(--color-warning-light);
+}
+
+.statusBadge.overdue {
+  color: var(--color-danger);
+  background-color: var(--color-danger-light);
+}
+
+.checkboxCell {
+  text-align: center;
+}
+
+.checkbox {
+  margin: 0;
+}
+
+.loadingState {
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-gray-500);
+}
+
+.emptyState {
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-gray-500);
+}
+
+.emptyIcon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  display: block;
+  color: var(--color-gray-300);
+}
+
+.emptyTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 18px;
+  color: var(--color-gray-700);
+}
+
+.emptyDescription {
+  margin: 0;
+}

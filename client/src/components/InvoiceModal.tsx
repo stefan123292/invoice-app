@@ -60,24 +60,12 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({
 
   return (
     <div 
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 9999
-      }}
+      className={styles.overlay}
       onClick={onClose}
     >
       <div 
         className={`${styles.modal} ${styles.medium}`}
         onClick={(e) => e.stopPropagation()}
-        style={{ zIndex: 10000 }}
       >
                 <div className={styles.modalHeader}>
                   <h2 className={styles.modalTitle}>
@@ -96,122 +84,41 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({
 
                 <div className={styles.modalBody}>
                   {isLoading && (
-                    <div style={{ 
-                      display: 'flex', 
-                      justifyContent: 'center', 
-                      alignItems: 'center', 
-                      padding: 'var(--spacing-8)' 
-                    }}>
-                      <div style={{
-                        width: '32px',
-                        height: '32px',
-                        border: '3px solid var(--color-gray-200)',
-                        borderTop: '3px solid var(--color-primary)',
-                        borderRadius: '50%',
-                        animation: 'spin 1s linear infinite'
-                      }}></div>
+                    <div className={styles.loadingContainer}>
+                      <div className={styles.loadingSpinner}></div>
                     </div>
                   )}
 
                   {error && (
-                    <div style={{
-                      padding: 'var(--spacing-4)',
-                      backgroundColor: 'var(--color-danger-light)',
-                      border: '1px solid var(--color-danger)',
-                      borderRadius: 'var(--radius-md)',
-                      color: 'var(--color-danger)',
-                      textAlign: 'center'
-                    }}>
+                    <div className={styles.errorContainer}>
                       Error loading invoice details
                     </div>
                   )}
 
                   {invoice && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+                    <div className={styles.invoiceDetails}>
                       {/* Invoice Header */}
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 'var(--spacing-4)',
-                        padding: 'var(--spacing-6)',
-                        backgroundColor: 'var(--color-gray-50)',
-                        borderRadius: 'var(--radius-lg)',
-                        border: '1px solid var(--color-gray-200)'
-                      }}>
-                        <div style={{
-                          width: '64px',
-                          height: '64px',
-                          borderRadius: 'var(--radius-lg)',
-                          background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-hover))',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: 'var(--color-white)',
-                          fontSize: 'var(--font-size-xl)',
-                          fontWeight: 'var(--font-weight-bold)',
-                          textTransform: 'uppercase'
-                        }}>
+                      <div className={styles.invoiceHeader}>
+                        <div className={styles.vendorAvatar}>
                           {invoice.vendorName.charAt(0)}
                         </div>
                         
-                        <div style={{ flex: 1 }}>
-                          <h3 style={{
-                            fontSize: 'var(--font-size-xl)',
-                            fontWeight: 'var(--font-weight-semibold)',
-                            color: 'var(--color-gray-900)',
-                            margin: '0 0 var(--spacing-1) 0'
-                          }}>
+                        <div className={styles.vendorInfo}>
+                          <h3 className={styles.vendorName}>
                             {invoice.vendorName}
                           </h3>
                           
-                          <div style={{
-                            fontSize: 'var(--font-size-3xl)',
-                            fontWeight: 'var(--font-weight-bold)',
-                            color: 'var(--color-gray-900)',
-                            margin: 'var(--spacing-2) 0'
-                          }}>
+                          <div className={styles.amount}>
                             {formatCurrency(invoice.amount)}
                           </div>
                           
-                          <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: 'var(--spacing-3)'
-                          }}>
-                            <span style={{
-                              fontSize: 'var(--font-size-sm)',
-                              color: 'var(--color-gray-600)'
-                            }}>
+                          <div className={styles.statusRow}>
+                            <span className={styles.dueDate}>
                               Due: {formatDate(invoice.dueDate)}
                             </span>
                             
-                            <span style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: 'var(--spacing-1)',
-                              padding: 'var(--spacing-1) var(--spacing-3)',
-                              borderRadius: 'var(--radius-full)',
-                              fontSize: 'var(--font-size-xs)',
-                              fontWeight: 'var(--font-weight-medium)',
-                              textTransform: 'uppercase',
-                              letterSpacing: '0.025em',
-                              ...(getInvoiceStatus() === 'paid' ? {
-                                backgroundColor: 'var(--color-success-light)',
-                                color: 'var(--color-success)'
-                              } : getInvoiceStatus() === 'overdue' ? {
-                                backgroundColor: 'var(--color-warning-light)',
-                                color: 'var(--color-warning)'
-                              } : {
-                                backgroundColor: 'var(--color-danger-light)',
-                                color: 'var(--color-danger)'
-                              })
-                            }}>
-                              <span style={{
-                                width: '6px',
-                                height: '6px',
-                                borderRadius: '50%',
-                                backgroundColor: 'currentColor'
-                              }}></span>
+                            <span className={`${styles.statusBadge} ${styles[getInvoiceStatus()]}`}>
+                              <span className={styles.statusDot}></span>
                               {getStatusText(getInvoiceStatus())}
                             </span>
                           </div>
@@ -221,79 +128,31 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({
                       {/* Invoice Details */}
                       {invoice.description && (
                         <div>
-                          <h4 style={{
-                            fontSize: 'var(--font-size-base)',
-                            fontWeight: 'var(--font-weight-semibold)',
-                            color: 'var(--color-gray-900)',
-                            margin: '0 0 var(--spacing-3) 0'
-                          }}>
+                          <h4 className={styles.descriptionTitle}>
                             Description
                           </h4>
-                          <p style={{
-                            fontSize: 'var(--font-size-base)',
-                            color: 'var(--color-gray-600)',
-                            lineHeight: 'var(--line-height-relaxed)',
-                            margin: 0,
-                            padding: 'var(--spacing-4)',
-                            backgroundColor: 'var(--color-gray-50)',
-                            borderRadius: 'var(--radius-md)',
-                            border: '1px solid var(--color-gray-200)'
-                          }}>
+                          <p className={styles.descriptionText}>
                             {invoice.description}
                           </p>
                         </div>
                       )}
 
                       {/* Invoice Metadata */}
-                      <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr',
-                        gap: 'var(--spacing-4)'
-                      }}>
-                        <div style={{
-                          padding: 'var(--spacing-4)',
-                          backgroundColor: 'var(--color-gray-50)',
-                          borderRadius: 'var(--radius-md)',
-                          border: '1px solid var(--color-gray-200)'
-                        }}>
-                          <div style={{
-                            fontSize: 'var(--font-size-xs)',
-                            color: 'var(--color-gray-500)',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.05em',
-                            marginBottom: 'var(--spacing-2)'
-                          }}>
+                      <div className={styles.metadataGrid}>
+                        <div className={styles.metadataItem}>
+                          <div className={styles.metadataLabel}>
                             Invoice ID
                           </div>
-                          <div style={{
-                            fontFamily: 'var(--font-family-mono)',
-                            fontSize: 'var(--font-size-sm)',
-                            color: 'var(--color-gray-900)',
-                            wordBreak: 'break-all'
-                          }}>
+                          <div className={styles.metadataValue}>
                             {invoice.id}
                           </div>
                         </div>
                         
-                        <div style={{
-                          padding: 'var(--spacing-4)',
-                          backgroundColor: 'var(--color-gray-50)',
-                          borderRadius: 'var(--radius-md)',
-                          border: '1px solid var(--color-gray-200)'
-                        }}>
-                          <div style={{
-                            fontSize: 'var(--font-size-xs)',
-                            color: 'var(--color-gray-500)',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.05em',
-                            marginBottom: 'var(--spacing-2)'
-                          }}>
+                        <div className={styles.metadataItem}>
+                          <div className={styles.metadataLabel}>
                             Created Date
                           </div>
-                          <div style={{
-                            fontSize: 'var(--font-size-sm)',
-                            color: 'var(--color-gray-900)'
-                          }}>
+                          <div className={styles.metadataValue}>
                             {formatDate(invoice.createdAt)}
                           </div>
                         </div>
